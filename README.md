@@ -1,4 +1,5 @@
 This was actually a really fun project to work on. It taught me about:
+
 1.) websockets. This allows me to transfer data between client and server in a bidirectional pattern, allowing for some really cool things to happen. 
 
 2.) Server. This taught me more about Node, and now i feel like its less of a obstacle and more of a challenge to overcome.
