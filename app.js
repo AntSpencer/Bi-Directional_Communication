@@ -5,6 +5,7 @@ window.onload = function () {
    var socketStatus = document.getElementById("status");
    var closeBtn = document.getElementById("close");
    var inputName = document.getElementById("name");
+   var activeUsersDisplay = document.getElementById("active-users");
 
    // Update the WebSocket URL to the one provided by Render
    var socket = new WebSocket("wss://websocketsno-1.onrender.com");
@@ -20,16 +21,20 @@ window.onload = function () {
 
    form.onsubmit = function (e) {
       e.preventDefault();
-      var message = inputNamevalue + ": " + messageField.value;
+      var message = inputName.value + ": " + messageField.value;
       socket.send(message);
       messageField.value = "";
       return false;
    };
 
    socket.onmessage = function (event) {
-      var message = event.data;
-      messageList.innerHTML +=
-         '<li class="received"><span>Received:</span>' + `${message}` + "</li>";
+      var message = JSON.parse(event.data);
+      if (message.type === "activeUsers") {
+         activeUsersDisplay.innerHTML = "Active users: " + message.count;
+      } else {
+         messageList.innerHTML +=
+            '<li class="received"><span>Received:</span>' + message + "</li>";
+      }
    };
 
    socket.onclose = function (event) {
