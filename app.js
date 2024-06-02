@@ -21,7 +21,7 @@ window.onload = function () {
    form.onsubmit = function (e) {
       e.preventDefault();
       var message = messageField.value;
-      socket.send(`${inputName}: ${message}`);
+      socket.send(`${inputName.value}: ${message}`);
       messageField.value = "";
       return false;
    };
