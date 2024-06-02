@@ -28,12 +28,22 @@ window.onload = function () {
    };
 
    socket.onmessage = function (event) {
-      var message = JSON.parse(event.data);
-      if (message.type === "activeUsers") {
-         activeUsersDisplay.innerHTML = "Active users: " + message.count;
-      } else {
+      try {
+         var message = JSON.parse(event.data); // Parse the JSON data
+         if (message.type === "activeUsers") {
+            activeUsersDisplay.innerHTML = "Active users: " + message.count;
+         } else {
+            messageList.innerHTML +=
+               '<li class="received"><span>Received:</span>' +
+               event.data +
+               "</li>";
+         }
+      } catch (e) {
+         // If the message is not JSON, consider it as a regular chat message
          messageList.innerHTML +=
-            '<li class="received"><span>Received:</span>' + message + "</li>";
+            '<li class="received"><span>Received:</span>' +
+            event.data +
+            "</li>";
       }
    };
 
