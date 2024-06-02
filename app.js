@@ -20,8 +20,8 @@ window.onload = function () {
 
    form.onsubmit = function (e) {
       e.preventDefault();
-      var message = messageField.value;
-      socket.send(`${inputName.value}: ${message}`);
+      var message = inputNamevalue + ": " + messageField.value;
+      socket.send(message);
       messageField.value = "";
       return false;
    };
