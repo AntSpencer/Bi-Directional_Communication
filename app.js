@@ -7,7 +7,7 @@ window.onload = function () {
    var closeBtn = document.getElementById("close");
    // the rest of the code goes here...
    // create a new WebSocket object.
-   var socket = new WebSocket(" ws://localhost:8080");
+   var socket = new WebSocket("https://websocketsno-1.onrender.com");
    socket.onopen = function (event) {
       socketStatus.innerHTML = "Connected to: " + event.currentTarget.url;
       socketStatus.className = "open";
