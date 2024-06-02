@@ -14,7 +14,7 @@ server.on("connection", (socket) => {
       // Broadcast the message to all other connected clients
       clients.forEach((client) => {
          if (client !== socket && client.readyState === WebSocket.OPEN) {
-            client.send(message);
+            client.send(`${message}`);
          }
       });
    });
@@ -27,4 +27,4 @@ server.on("connection", (socket) => {
    socket.send("Welcome to the WebSocket server!");
 });
 
-console.log(`WebSocket server is running on ws://localhost:${port}`);
+console.log(`WebSocket server is running! YAY!`);

@@ -85,6 +85,18 @@ textarea {
    margin-bottom: 1rem;
 }
 
+#name {
+   width: 20vw;
+   color: teal;
+   padding: 0.5rem;
+   font-size: 1rem;
+   border: 1px solid #d9d9d9;
+   border-radius: 3px;
+   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+   min-height: 10px;
+   margin-bottom: 1rem;
+}
+
 button {
    display: block;
    width: 100%;
