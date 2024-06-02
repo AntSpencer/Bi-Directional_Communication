@@ -1,6 +1,9 @@
-const WebSocket = require("ws"); //makes it require the websocket package
-const server = new WebSocket.Server({ port: 8080 }); //This makes a websocket server instead of one of the regular localhost ones
-const clients = new Set(); //This holds all currently connected clients
+const WebSocket = require("ws");
+const port = process.env.PORT || 8080; // Use the port provided by Render
+
+const server = new WebSocket.Server({ port: port });
+
+const clients = new Set();
 
 server.on("connection", (socket) => {
    console.log("Client connected");
@@ -8,10 +11,10 @@ server.on("connection", (socket) => {
 
    socket.on("message", (message) => {
       console.log(`Received: ${message}`);
-      //THIS CODE TOOK ME LIKE AN HOUR TO SOLVE
+      // Broadcast the message to all other connected clients
       clients.forEach((client) => {
          if (client !== socket && client.readyState === WebSocket.OPEN) {
-            client.send(`${message}`); //if you dont use backticks it return a blib object
+            client.send(message);
          }
       });
    });
@@ -24,4 +27,4 @@ server.on("connection", (socket) => {
    socket.send("Welcome to the WebSocket server!");
 });
 
-console.log("WebSocket server is now on ws://localhost:8080");
+console.log(`WebSocket server is running on ws://localhost:${port}`);

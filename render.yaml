@@ -2,7 +2,7 @@ services:
    - type: web
      name: websocket-server
      env: node
-     region: oregon
+     region: Ohio
      plan: free
      buildCommand: "npm install"
      startCommand: "node server.js"
